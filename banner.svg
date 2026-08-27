@@ -1,0 +1,532 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="360"
+  viewBox="0 0 1200 360"
+  role="img"
+  aria-labelledby="title description"
+  class="github-time-night weather-clear"
+  data-temperature="16.3°C"
+>
+  <title id="title">
+    Milton Bardo e sua família
+  </title>
+
+  <desc id="description">
+    Milton e Samyra brincam com a filha Yasmin enquanto o cenário
+    alterna suavemente entre o dia e a noite.
+  </desc>
+
+  <defs>
+    <!-- Céu durante o dia -->
+    <linearGradient id="daySky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87c9e8" />
+      <stop offset="65%" stop-color="#f6d99a" />
+      <stop offset="100%" stop-color="#f4b66e" />
+    </linearGradient>
+
+    <!-- Céu durante o pôr do sol -->
+    <linearGradient id="sunsetSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4d568f" />
+      <stop offset="55%" stop-color="#d46a66" />
+      <stop offset="100%" stop-color="#f4a259" />
+    </linearGradient>
+
+    <!-- Céu durante a noite -->
+    <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071426" />
+      <stop offset="60%" stop-color="#102c46" />
+      <stop offset="100%" stop-color="#244b4a" />
+    </linearGradient>
+
+    <!-- Céu durante o amanhecer -->
+    <linearGradient id="dawnSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#766b9f" />
+      <stop offset="55%" stop-color="#d7939b" />
+      <stop offset="100%" stop-color="#f4c280" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* O estado do céu é atualizado pela GitHub Action conforme o UTC. */
+
+    .sky {
+      animation: none !important;
+    }
+
+    .github-time-day .day-sky,
+    .github-time-sunset .sunset-sky,
+    .github-time-night .night-sky,
+    .github-time-dawn .dawn-sky {
+      opacity: 1;
+    }
+
+    .github-time-day .sunset-sky,
+    .github-time-day .night-sky,
+    .github-time-day .dawn-sky,
+    .github-time-sunset .day-sky,
+    .github-time-sunset .night-sky,
+    .github-time-sunset .dawn-sky,
+    .github-time-night .day-sky,
+    .github-time-night .sunset-sky,
+    .github-time-night .dawn-sky,
+    .github-time-dawn .day-sky,
+    .github-time-dawn .sunset-sky,
+    .github-time-dawn .night-sky {
+      opacity: 0;
+    }
+
+    .github-time-day .day-sky,
+    .github-time-sunset .sunset-sky,
+    .github-time-night .night-sky,
+    .github-time-dawn .dawn-sky {
+      animation: sky-fade-in 2.5s ease both !important;
+    }
+
+    .weather-effect {
+      display: none;
+    }
+
+    .github-time-night.weather-clear .weather-moon,
+    .github-time-day.weather-clear .weather-sun,
+    .github-time-sunset.weather-clear .weather-sun,
+    .github-time-dawn.weather-clear .weather-sun,
+    .weather-cloudy .weather-cloud,
+    .weather-rain .weather-cloud,
+    .weather-rain .weather-rainfall,
+    .weather-storm .weather-cloud,
+    .weather-storm .weather-rainfall,
+    .weather-storm .weather-lightning,
+    .weather-snow .weather-cloud,
+    .weather-snow .weather-snowfall {
+      display: block;
+    }
+
+    .weather-sun {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: weather-pulse 4s ease-in-out infinite;
+    }
+
+    .weather-moon {
+      animation: moon-glow 4s ease-in-out infinite;
+    }
+
+    .weather-cloud path {
+      animation: cloud-drift 8s ease-in-out infinite alternate;
+    }
+
+    .weather-rainfall path {
+      animation: rain-fall 1.4s linear infinite;
+    }
+
+    .weather-rainfall path:nth-child(2) {
+      animation-delay: 0.35s;
+    }
+
+    .weather-rainfall path:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+
+    .weather-snowfall circle {
+      animation: snow-fall 3s ease-in-out infinite;
+    }
+
+    .weather-snowfall circle:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .weather-snowfall circle:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    .weather-lightning {
+      animation: lightning-flash 4s ease-in-out infinite;
+    }
+
+    #weather-description,
+    #weather-time {
+      animation: info-fade-in 1.5s ease both;
+    }
+
+    @keyframes sky-fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes info-fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes weather-pulse {
+      0%,
+      100% {
+        opacity: 0.85;
+        transform: scale(0.96);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.04);
+      }
+    }
+
+    @keyframes moon-glow {
+      0%,
+      100% {
+        opacity: 0.8;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes cloud-drift {
+      from {
+        transform: translateX(-5px);
+      }
+
+      to {
+        transform: translateX(8px);
+      }
+    }
+
+    @keyframes rain-fall {
+      0% {
+        opacity: 0;
+        transform: translateY(-7px);
+      }
+
+      25%,
+      75% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes snow-fall {
+      0%,
+      100% {
+        opacity: 0.35;
+        transform: translateY(-5px);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(5px, 8px);
+      }
+    }
+
+    @keyframes lightning-flash {
+      0%,
+      88%,
+      100% {
+        opacity: 0;
+      }
+
+      90%,
+      93% {
+        opacity: 1;
+      }
+    }
+
+    .day-sky {
+      animation-name: day-cycle;
+    }
+
+    .sunset-sky {
+      animation-name: sunset-cycle;
+    }
+
+    .night-sky {
+      animation-name: night-cycle;
+    }
+
+    .dawn-sky {
+      animation-name: dawn-cycle;
+    }
+
+    .stars {
+      animation: none;
+    }
+
+    .star {
+      animation: twinkle 2.5s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .star:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .star:nth-child(3) {
+      animation-delay: 1s;
+    }
+
+    .star:nth-child(4) {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes day-cycle {
+      0%,
+      18% {
+        opacity: 1;
+      }
+
+      32%,
+      82% {
+        opacity: 0;
+      }
+
+      94%,
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes sunset-cycle {
+      0%,
+      15% {
+        opacity: 0;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      45%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes night-cycle {
+      0%,
+      35% {
+        opacity: 0;
+      }
+
+      48%,
+      68% {
+        opacity: 1;
+      }
+
+      82%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes dawn-cycle {
+      0%,
+      62% {
+        opacity: 0;
+      }
+
+      78% {
+        opacity: 1;
+      }
+
+      94%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes stars-cycle {
+      0%,
+      38% {
+        opacity: 0;
+      }
+
+      50%,
+      66% {
+        opacity: 1;
+      }
+
+      78%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%,
+      100% {
+        opacity: 0.25;
+        transform: scale(0.8);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+
+    /*
+     * Desativa as animações quando o visitante tiver solicitado
+     * redução de movimento no sistema operacional.
+     */
+    @media (prefers-reduced-motion: reduce) {
+      .sky,
+      .stars,
+      .star,
+      .weather-sun,
+      .weather-moon,
+      .weather-cloud path,
+      .weather-rainfall path,
+      .weather-snowfall circle,
+      .weather-lightning {
+        animation: none;
+      }
+
+      .sunset-sky,
+      .night-sky,
+      .dawn-sky {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- Céus sobrepostos -->
+  <g id="skies">
+    <rect
+      class="sky day-sky"
+      width="1200"
+      height="360"
+      fill="url(#daySky)"
+    />
+
+    <rect
+      class="sky sunset-sky"
+      width="1200"
+      height="360"
+      fill="url(#sunsetSky)"
+    />
+
+    <rect
+      class="sky night-sky"
+      width="1200"
+      height="360"
+      fill="url(#nightSky)"
+    />
+
+    <rect
+      class="sky dawn-sky"
+      width="1200"
+      height="360"
+      fill="url(#dawnSky)"
+    />
+  </g>
+
+  <!-- Estrelas -->
+  <g class="stars" fill="#ffe8a3">
+    <circle class="star" cx="130" cy="60" r="3" />
+    <circle class="star" cx="290" cy="95" r="2" />
+    <circle class="star" cx="480" cy="48" r="4" />
+    <circle class="star" cx="670" cy="88" r="2.5" />
+    <circle class="star" cx="860" cy="55" r="3" />
+    <circle class="star" cx="1050" cy="105" r="2" />
+  </g>
+
+  <!-- Clima atual de Porto Alegre, atualizado pela GitHub Action -->
+  <g transform="translate(54 48)">
+    <g class="weather-effect weather-sun" fill="#ffe29a">
+      <circle cx="34" cy="34" r="22" />
+      <g stroke="#ffe29a" stroke-width="4" stroke-linecap="round">
+        <path d="M 34 2 V 12" />
+        <path d="M 34 56 V 66" />
+        <path d="M 2 34 H 12" />
+        <path d="M 56 34 H 66" />
+      </g>
+    </g>
+
+    <g class="weather-effect weather-moon" fill="#ffe8a3">
+      <circle cx="34" cy="34" r="25" />
+      <circle cx="45" cy="24" r="25" fill="#102c46" />
+    </g>
+
+    <g class="weather-effect weather-cloud" fill="#d7e5e5">
+      <path d="M 0 52 C 0 36, 18 27, 32 33 C 40 12, 72 12, 80 34 C 100 31, 112 44, 112 58 H 0 Z" />
+    </g>
+
+    <g class="weather-effect weather-rainfall" stroke="#b9e3ed" stroke-width="4" stroke-linecap="round">
+      <path d="M 22 72 l -7 17" />
+      <path d="M 52 72 l -7 17" />
+      <path d="M 82 72 l -7 17" />
+    </g>
+
+    <g class="weather-effect weather-lightning" fill="#ffe37b">
+      <path d="M 62 68 l -14 27 h 12 l -7 20 l 24 -31 h -13 z" />
+    </g>
+
+    <g class="weather-effect weather-snowfall" fill="#eef8ff">
+      <circle cx="22" cy="78" r="4" />
+      <circle cx="52" cy="91" r="4" />
+      <circle cx="82" cy="78" r="4" />
+    </g>
+
+    <text id="weather-description" x="132" y="32" fill="#fff8e7" font-family="sans-serif" font-size="22" font-weight="600">Céu limpo</text>
+    <text id="weather-time" x="132" y="61" fill="#fff8e7" font-family="sans-serif" font-size="18">01:57</text>
+    <text x="132" y="87" fill="#fff8e7" font-family="sans-serif" font-size="16" opacity="0.8">Porto Alegre - Brazil</text>
+  </g>
+
+  <!-- Morro distante -->
+  <path
+    d="
+      M 0 285
+      C 160 245, 300 260, 440 280
+      C 600 305, 730 240, 900 265
+      C 1030 285, 1110 250, 1200 260
+      L 1200 360
+      L 0 360
+      Z
+    "
+    fill="#20382f"
+  />
+
+  <!-- Morro principal -->
+  <path
+    d="
+      M 0 325
+      C 220 280, 410 300, 600 315
+      C 790 330, 980 275, 1200 310
+      L 1200 360
+      L 0 360
+      Z
+    "
+    fill="#12251d"
+  />
+
+  <!-- Moldura -->
+  <rect
+    x="2"
+    y="2"
+    width="1196"
+    height="356"
+    rx="18"
+    fill="none"
+    stroke="#c6a15b"
+    stroke-width="4"
+    stroke-opacity="0.45"
+  />
+</svg>
