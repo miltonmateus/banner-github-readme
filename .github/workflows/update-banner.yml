@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-banner
+  cancel-in-progress: true
+
 env:
   BANNER_LOCALE: en-US
 
@@ -16,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -24,6 +30,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin
+          git pull --rebase origin "${GITHUB_REF_NAME:-main}"
           git add banner.svg
-          git diff --cached --quiet || git commit -m "chore: update banner"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update banner"
+          fi
+          git push origin HEAD:"${GITHUB_REF_NAME:-main}"
