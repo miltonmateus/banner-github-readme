@@ -2,7 +2,7 @@ name: Update README banner
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "7/15 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -25,15 +25,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Sync default branch
+        run: |
+          git fetch origin
+          git pull --rebase origin "${GITHUB_REF_NAME:-main}"
       - run: node scripts/update-banner.mjs
       - name: Publish updated state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin
-          git pull --rebase origin "${GITHUB_REF_NAME:-main}"
           git add banner.svg
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update banner"
+          if git diff --cached --quiet; then
+            echo "Banner state is already current"
+            exit 0
           fi
+          git commit -m "chore: update banner"
           git push origin HEAD:"${GITHUB_REF_NAME:-main}"
