@@ -6,7 +6,7 @@
   role="img"
   aria-labelledby="title description"
   class="github-time-night weather-cloudy alert-none"
-  data-temperature="16.6°C" lang="en-US">
+  data-temperature="16.5°C" lang="en-US">
   <title id="title">
     Porto Alegre weather banner
   </title>
@@ -221,6 +221,30 @@
       opacity: 0.9;
     }
 
+    .city-window rect {
+      animation: city-window-toggle-a 20s steps(1, end) infinite;
+    }
+
+    .city-window rect:nth-child(3n) {
+      animation-name: city-window-toggle-b;
+      animation-delay: -4s;
+    }
+
+    .city-window rect:nth-child(4n) {
+      animation-name: city-window-toggle-c;
+      animation-delay: -9s;
+    }
+
+    .city-window rect:nth-child(5n) {
+      animation-name: city-window-toggle-d;
+      animation-delay: -13s;
+    }
+
+    .city-window rect:nth-child(7n) {
+      animation-name: city-window-toggle-e;
+      animation-delay: -17s;
+    }
+
     #weather-alert-level,
     #weather-alert-detail {
       display: none;
@@ -401,6 +425,76 @@
       }
     }
 
+    @keyframes city-window-toggle-a {
+      0%,
+      19%,
+      61%,
+      100% {
+        opacity: 1;
+      }
+
+      20%,
+      60% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes city-window-toggle-b {
+      0%,
+      34%,
+      76%,
+      100% {
+        opacity: 0;
+      }
+
+      35%,
+      75% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes city-window-toggle-c {
+      0%,
+      24%,
+      46%,
+      100% {
+        opacity: 1;
+      }
+
+      25%,
+      45% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes city-window-toggle-d {
+      0%,
+      49%,
+      86%,
+      100% {
+        opacity: 1;
+      }
+
+      50%,
+      85% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes city-window-toggle-e {
+      0%,
+      14%,
+      56%,
+      100% {
+        opacity: 0;
+      }
+
+      15%,
+      55% {
+        opacity: 1;
+      }
+    }
+
     .stars {
       opacity: 0;
     }
@@ -460,6 +554,7 @@
       .weather-wind path,
       .weather-snowfall circle,
       .weather-lightning,
+      .city-window rect,
       #weather-description,
       #weather-time,
       #weather-alert-level,
@@ -653,8 +748,8 @@
       <circle cx="82" cy="78" r="4" />
     </g>
 
-    <text id="weather-description" x="132" y="32" fill="#fff8e7" font-family="sans-serif" font-size="22" font-weight="600">Cloudy · 16.6°C</text>
-    <text id="weather-time" x="132" y="61" fill="#fff8e7" font-family="sans-serif" font-size="18">Updated at 22:39</text>
+    <text id="weather-description" x="132" y="32" fill="#fff8e7" font-family="sans-serif" font-size="22" font-weight="600">Cloudy · 16.5°C</text>
+    <text id="weather-time" x="132" y="61" fill="#fff8e7" font-family="sans-serif" font-size="18">Updated at Aug 30, 23:27</text>
     <text id="weather-alert-level" x="132" y="87" fill="#eaf3ff" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.8"></text>
     <text id="weather-alert-detail" x="132" y="108" fill="#eef7ff" font-family="sans-serif" font-size="14" opacity="0.9"></text>
     <text id="weather-location" x="132" y="87" fill="#fff8e7" stroke="#071426" stroke-width="0.8" stroke-opacity="0.65" paint-order="stroke fill" font-family="sans-serif" font-size="17" font-weight="500">Porto Alegre - Brazil</text>

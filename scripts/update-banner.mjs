@@ -118,6 +118,8 @@ const temperatureText = new Intl.NumberFormat(locale, {
 }).format(temperature);
 const weatherSummary = `${weatherDescription} · ${temperatureText}°C`;
 const generatedTime = new Intl.DateTimeFormat(locale, {
+  month: "short",
+  day: "2-digit",
   hour: "2-digit",
   minute: "2-digit",
   hour12: false,
