@@ -6,7 +6,7 @@
   role="img"
   aria-labelledby="title description"
   class="github-time-day weather-cloudy alert-none"
-  data-temperature="14.1°C" lang="en-US">
+  data-temperature="18.4°C" lang="en-US">
   <title id="title">
     Porto Alegre weather banner
   </title>
@@ -748,8 +748,8 @@
       <circle cx="82" cy="78" r="4" />
     </g>
 
-    <text id="weather-description" x="132" y="32" fill="#fff8e7" font-family="sans-serif" font-size="22" font-weight="600">Cloudy · 14.1°C</text>
-    <text id="weather-time" x="132" y="61" fill="#fff8e7" font-family="sans-serif" font-size="18">Updated at Sep 04, 08:07</text>
+    <text id="weather-description" x="132" y="32" fill="#fff8e7" font-family="sans-serif" font-size="22" font-weight="600">Cloudy · 18.4°C</text>
+    <text id="weather-time" x="132" y="61" fill="#fff8e7" font-family="sans-serif" font-size="18">Updated at Sep 04, 11:59</text>
     <text id="weather-alert-level" x="132" y="87" fill="#eaf3ff" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.8"></text>
     <text id="weather-alert-detail" x="132" y="108" fill="#eef7ff" font-family="sans-serif" font-size="14" opacity="0.9"></text>
     <text id="weather-location" x="132" y="87" fill="#fff8e7" stroke="#071426" stroke-width="0.8" stroke-opacity="0.65" paint-order="stroke fill" font-family="sans-serif" font-size="17" font-weight="500">Porto Alegre - Brazil</text>
